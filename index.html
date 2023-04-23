@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kleider machen Leute</title>
+        <link rel = "icon" href="https://cdn-icons-png.flaticon.com/512/884/884433.png">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+        <link rel="stylesheet" href="MyCSS.css">
+        
+        <script defer type="text/javascript" src="MyJavaScript.js"></script> 
+    </head>
+    <body>
+        <header>
+            <div>
+                <nav>
+                    <h1>Kleider machen Leute e.V.</h1>
+                    <ul>
+                        <li><a href= "index.html">Formular</a></li>
+                        <li><a href= "">unterstützte Krisengebiete</a></li>
+                        <li><a href= "">Wir über uns</a></li>
+                        <li><a href= "">Kontakt</a></li>
+                    </ul>
+                </nav>   
+            </div>
+        </header>
+        <main id="mainPart">
+            <section id="registration">
+                    <form class= "form">
+                        <h2>Registrierung</h2>
+                        
+                        <div>
+                            <label for="field1"><b>Vorname</b></label>
+                            <input id="field1" name="Vorname" type="text" placeholder="Vorname" required> 
+
+                            <label for="field2"><b>Nachname</b></label>
+                            <input id="field2" name="Nachname" type="text" placeholder="Nachname" required> 
+
+                            <label for="field3"><b>Email</b></label>
+                            <input id="field3" name="Email" type="email" placeholder="Email" required>
+                        </div>
+
+                        <div>
+                            <label for="field4"><b>Übergabeart</b></label>
+                            <select id="field4" name="Übergabeart" required>
+                                <option value = "" selected disabled>Bitte auswählen</option>
+                                <option value="Geschäftsstelle Frankfurt">Geschäftsstelle Frankfurt</option>
+                                <option value="Abholung per Sammelfahrzeug">Abholung per Sammelfahrzeug</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="field5"><b>Straße und Hausnummer</b></label>
+                            <input id="field5" name="Straße und Hausnummer" type="text" placeholder="Straße und Hausnummer" required>
+
+                            <label for="field6"><b>PLZ</b></label>
+                            <input id="field6" name="PLZ" type="text" placeholder="PLZ" maxlength="5" required>
+   
+                            <label for="field7">Ort</label>
+                            <input id="field7" name="Ort" type="text" placeholder="Ort" required>
+                        </div>
+
+                        <div id="parent">
+                            <label><b>Art der Kleidung</b></label> <br>
+
+                            <label for="socks">Socken</label> 
+                            <input id="socks" name="Kleidung" class="clothesType" type="checkbox" value="Socken">
+
+                            <label for="shoes">Schuhe</label> 
+                            <input id="shoes" name="Kleidung" class="clothesType" type="checkbox" value="Schuhe">
+
+                            <label for="dress">Unterwäsche</label> 
+                            <input id="dress" name="Kleidung" class="clothesType" type="checkbox" value="Unterwäsche">
+                            <br>
+                            <label for="pants">Hosen</label> 
+                            <input id="pants" name="Kleidung" class="clothesType" type="checkbox" value="Hosen"> 
+
+                            <label for="hoodie">Pullover</label> 
+                            <input id="hoodie" name="Kleidung" class="clothesType" type="checkbox" value="Pullover">
+
+                            <label for="coat">Jacken</label>
+                            <input id="coat" name="Kleidung" class="clothesType" type="checkbox" value="Jacken">
+                            <br>
+                            <label for="other">Anderes</label>
+                            <input id="other" name="Kleidung" class="clothesType" type="checkbox">
+                        </div>
+
+                        <div>
+                            <label for="field9"><b>Auswahl des Krisengebietes</b></label> <br>
+                            <select id="field9" name="Krisengebiet" required>
+                                <option value="" selected disabled >Bitte auswählen</option>
+                                <option value="Ukraine">Ukraine</option>
+                                <option value="Haiti">Haiti</option>
+                                <option value="Burkina Faso">Burkina Faso</option>
+                                <option value="Südsudan">Südsudan</option>
+                                <option value="Syrien">Syrien</option>
+                                <option value="Jemen">Jemen</option>
+                                <option value="Demokratische Republik Kongo">Demokratische Republik Kongo</option>
+                                <option value="Afghanistan">Afghanistan</option>
+                                <option value="Äthiopien">Äthiopien</option>
+                                <option value="Somalia">Somalia</option>
+                            </select> 
+                        </div>
+                        <br>
+                        <button id="submitButton" type="submit">Registrierung abschließen</button>
+                        <button id="resetButton" type="reset">Zurücksetzen</button>
+                    </form>
+            </section>
+        </main>
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="">Datenschutz</a></li>
+                    <li><a href="">Impressum</a></li>
+                </ul>
+            </nav>
+        </footer>
+    </body>
+</html>
