@@ -7,12 +7,16 @@
         
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
         <link rel="stylesheet" href="MyCSS.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
         <script defer type="text/javascript" src="MyJavaScript.js"></script> 
     </head>
     <body>
         <header>
-            <div>
+
+            <!-- Desktop-Menü -->
+            <div class="desktop-container">
                 <nav>
                     <h1>Kleider machen Leute e.V.</h1>
                     <ul>
@@ -23,19 +27,39 @@
                     </ul>
                 </nav>   
             </div>
+
+            <!-- Mobile-Menü -->
+            <div class="mobile-container">
+                <div class="mobileNav">
+                  <h1>Kleider machen Leute e.V.</h1>
+                  <div id="menuLinks">
+                    <a href="index.html">Formular</a>
+                    <a href="">unterstützte Krisengebiete</a>
+                    <a href="">Wir über uns</a>
+                    <a href="">Kontakt</a>
+                  </div>
+                  <a id="menuIcon" class="icon" >
+                    <i class="fa fa-bars"></i>
+                  </a>
+                </div>   
+            </div>
+
         </header>
         <main id="mainPart">
             <section id="registration">
                     <form class= "form">
                         <h2>Registrierung</h2>
-                        
                         <div>
                             <label for="field1"><b>Vorname</b></label>
                             <input id="field1" name="Vorname" type="text" placeholder="Vorname" required> 
+                        </div>
 
+                        <div>
                             <label for="field2"><b>Nachname</b></label>
-                            <input id="field2" name="Nachname" type="text" placeholder="Nachname" required> 
+                            <input id="field2" name="Nachname" type="text" placeholder="Nachname" required>
+                        </div>
 
+                        <div>
                             <label for="field3"><b>Email</b></label>
                             <input id="field3" name="Email" type="email" placeholder="Email" required>
                         </div>
@@ -52,16 +76,20 @@
                         <div>
                             <label for="field5"><b>Straße und Hausnummer</b></label>
                             <input id="field5" name="Straße und Hausnummer" type="text" placeholder="Straße und Hausnummer" required>
+                        </div>
 
-                            <label for="field6"><b>PLZ</b></label>
-                            <input id="field6" name="PLZ" type="text" placeholder="PLZ" maxlength="5" required>
-   
+                        <div>
+                            <label id = "plzLabel" for="field6"><b>PLZ</b></label>
+                            <input id="field6" name="PLZ" type="text" placeholder="PLZ"  minlength="5" maxlength="5" required>
+                        </div>
+                        
+                        <div>
                             <label for="field7">Ort</label>
                             <input id="field7" name="Ort" type="text" placeholder="Ort" required>
                         </div>
 
                         <div id="parent">
-                            <label><b>Art der Kleidung</b></label> <br>
+                            <label id="errorParent"><b>Art der Kleidung</b></label> <br>
 
                             <label for="socks">Socken</label> 
                             <input id="socks" name="Kleidung" class="clothesType" type="checkbox" value="Socken">
@@ -69,18 +97,27 @@
                             <label for="shoes">Schuhe</label> 
                             <input id="shoes" name="Kleidung" class="clothesType" type="checkbox" value="Schuhe">
 
+                            <br class = "mobile">
+
                             <label for="dress">Unterwäsche</label> 
                             <input id="dress" name="Kleidung" class="clothesType" type="checkbox" value="Unterwäsche">
-                            <br>
+
+                            <br class = "desktop">
+
                             <label for="pants">Hosen</label> 
                             <input id="pants" name="Kleidung" class="clothesType" type="checkbox" value="Hosen"> 
+
+                            <br class = "mobile">
 
                             <label for="hoodie">Pullover</label> 
                             <input id="hoodie" name="Kleidung" class="clothesType" type="checkbox" value="Pullover">
 
                             <label for="coat">Jacken</label>
                             <input id="coat" name="Kleidung" class="clothesType" type="checkbox" value="Jacken">
-                            <br>
+
+                            <br class = "desktop">
+                            <br class = "mobile">
+
                             <label for="other">Anderes</label>
                             <input id="other" name="Kleidung" class="clothesType" type="checkbox">
                         </div>

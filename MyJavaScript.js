@@ -1,33 +1,11 @@
 
-// document.querySelector("form").onsubmit = function() {
-//     let suche = document.querySelector(".test2").value;
-//     if (suche.length < 3) {
-//         alert("zu kurzer Suchbegriff");
-//     } else {
-//         alert("Super");
-//     }
-//     return false;
-// }
-
-
-let div = document.getElementById("parent");
-let bt = document.getElementById("submitButton");
-bt.addEventListener("click", validate);
-div.addEventListener("blur", validate);
-function validate(){
-    let markedcheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-    let checkboxes = document.getElementsByClassName("clothesType");
-    if(markedcheckboxes.length >0){
-        checkboxes.required = false;
-    }else{
-        checkboxes.required = true;
-    }
-}
+// Mobil-Menü-Event
+document.getElementById("menuIcon").addEventListener('click', showMobileMenu)
 
 // Übergabeart-Event
 document.getElementById("field4").addEventListener('change', checkType);
 
-// PLZ-Event
+// PLZ-Pürfung-Event
 document.getElementById("field6").addEventListener('change', checkPLZ);
 
 // Andere Kleidungsart-Event
@@ -36,6 +14,21 @@ document.getElementById("other").addEventListener('click', showNewInput);
 // Formularabgabe-Event
 let formEl = document.querySelector('.form');
 formEl.addEventListener("submit", handleSubmit);
+
+//Kleidungsart-Prüfung-Event
+let checkboxes = document.getElementsByClassName("clothesType")
+for(let i = 0; i < checkboxes.length; i++){
+    checkboxes[i].addEventListener('click', checkClothesType);
+}
+
+function showMobileMenu() {
+    var menuLinks = document.getElementById("menuLinks");
+    if (menuLinks.style.display === "block") {
+        menuLinks.style.display = "none";
+    }else {
+        menuLinks.style.display = "block";
+    }
+}
 
 // Übergabeart-Funktion
 function checkType(){
@@ -77,13 +70,38 @@ function checkType(){
 
 // PLZ-Funktion
 function checkPLZ(){
-    let val = document.getElementById("field6").value;
+    let errorParent = document.getElementById("plzLabel");
+    let plzValue = document.getElementById("field6").value;
+    let correctInput = false;
+    let p = document.createElement("p");
+    let text = document.createTextNode("Leider bieten wir keine Abholung für diesen Ort an.");
 
-    if(val.length !== 5 || !val.startsWith('60')){
+    p.appendChild(text);
+    p.setAttribute("id", "errorMessagePLZ");
+    p.style.color = "red";
+    p.style.marginBlockStart = 0;
+    p.style.marginBlockEnd = 0;
+
+    if(plzValue.length !== 5 || !plzValue.startsWith('60')){
         document.getElementById("field6").style.border = "medium solid red";
+        correctInput = false;
     }else{
         document.getElementById("field6").style.border = "medium solid green";
+        correctInput = true;
     }
+
+    //Überprüft, ob die Fehlernachricht bereits angezeigt wird
+    if(!correctInput){
+        if(!errorParent.contains(document.getElementById("errorMessagePLZ"))){
+            errorParent.appendChild(p);
+        }
+    }else {
+        if(errorParent.contains(document.getElementById("errorMessagePLZ"))){
+            errorParent.removeChild(document.getElementById("errorMessagePLZ"));
+        }
+    }
+
+    return correctInput;
 }
 
 // Andere Kleidungsart-Funktion
@@ -111,7 +129,7 @@ function showNewInput(){
 // Formularabgabe-Funktion
 function handleSubmit(event){
     event.preventDefault();
-    // if(checkClothesType()){
+    if(checkClothesType() && checkPLZ()){
         
         //Inputs erneut überprüfen?
         
@@ -131,16 +149,13 @@ function handleSubmit(event){
         .then(result => console.log(result))
         .then(showConfirmation(jsonData))
         .catch(err => console.log(err))
-    // }else{
-    //     alert("Bitte Art der Kleidung angeben!");
-    // }
-    
+    }
 }
 
 
 // https://www.tutorials.de/threads/pruefen-ob-mind-1-checkbox-gecheckt-ist.389018/
 function checkClothesType(){
-    let checkboxes = document.getElementsByClassName("clothesType");
+    checkboxes = document.getElementsByClassName("clothesType");
     let checked = false;
 
     for(let i=0; i<checkboxes.length; i++){
@@ -149,15 +164,32 @@ function checkClothesType(){
             break;
         }
     }
-    
+
     if(!checked){
-        document.getElementById("socks").required = true; 
+        let errorParent = document.getElementById("errorParent");
+        let p = document.createElement("p");
+        let text = document.createTextNode("Bitte Art der Kleidung angeben");
+
+        p.appendChild(text);
+        p.setAttribute("id", "errorMessage");
+        p.style.color = "red";
+        p.style.marginBlockStart = 0;
+        p.style.marginBlockEnd = 0;
+
+        if(!errorParent.contains(document.getElementById("errorMessage"))){
+            errorParent.appendChild(p);
+        }
+    }else {
+        if(errorParent.contains(document.getElementById("errorMessage"))){
+            errorParent.removeChild(document.getElementById("errorMessage"));
+        }
     }
+    return checked;
 }
 
 function showConfirmation(jsonData){
     let object = JSON.parse(jsonData);
-    console.log(object);
+    // console.log(object);
 
     // Entfernen der Registrierung
     let parent = document.getElementById("mainPart");

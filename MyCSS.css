@@ -1,24 +1,121 @@
+/* Anpassung der ungeordenten Liste in der Kopf-Navigation */
 ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
+
+/* Darstellung der Listeneinträge nebeneinander in der Kopf-Navigation */
 li {
     display: inline-flex;
     margin: 1em;
 }
+
+/* Farbe der Header-Links auf weiß als individuelle Design-Anpassung */
 header a {
     color: white;
 }
+
+/* Farbe der Footer-Links auf grau als individuelle Design-Anpassung */
 footer a{
     color: #a9b1ba;
 }
+
+/* Zentrierte Darstellung der Listeneinträge im Footer als individuelle Design-Anpassung */
 footer nav ul{
     text-align: center;
 }
+
+/* Anpassung der Margin für mehr Platz zwischen den Input-Feldern */
 div{
     margin-top: 1em;
 }
+
+/* Mittige Darstellung der Registrirungsbestätigung */
 #confirmation{
     text-align: center;
+}
+
+/* Reset-Button erhält dünnen roten Rahmen */
+#resetButton{
+    border: solid red;
+    border-width: thin;
+}
+
+/* Design kleine Bildschirme */
+@media screen and (max-width: 767px){
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h2{
+        font-size: 1.2em;
+    }
+
+    .mobile {
+        display: block;
+    }
+
+    .desktop{
+        display: none;
+    }
+
+    .desktop-container{
+        display: none;
+    }
+
+    #resetButton{
+        margin-top: 1em;
+    }
+}
+
+/* Design große Bildschirme */
+@media screen and (min-width: 768px){
+    .mobile {
+        display: none;
+    }
+
+    .desktop{
+        display: block;
+    }
+
+    /* .mobile-container{
+        display: none;
+    } */
+
+    .mobileNav{
+        display: none;
+    }
+}
+
+/* Mobil Navigationsleiste */
+/* .mobile-container {
+    max-width: 480px;
+    margin: auto;
+    height: auto;
+} */
+  
+/* .mobileNav {
+overflow: hidden;
+position: relative;
+} */
+  
+#menuLinks {
+    display: none;
+}
+
+.mobileNav a {
+    padding: 14px 16px;
+    font-size: 17px;
+    display: block;
+}
+
+
+.mobileNav a.icon {
+    font-size: 32px;
+    padding: 17px 16px;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
