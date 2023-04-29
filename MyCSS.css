@@ -1,46 +1,57 @@
-/* Anpassung der ungeordenten Liste in der Kopf-Navigation */
+/* Beginn 1. Abschnitt */
+
+/* Anpassung der ungeordneten Liste */
+/* Entfernen von Listenpunkten, Margin, Padding */
 ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-/* Darstellung der Listeneinträge nebeneinander in der Kopf-Navigation */
-li {
+/* Anpassung der Listeneinträge */
+/* Darstellung nebeneinander, Margin in Größe der Schriftgröße */
+li{
     display: inline-flex;
     margin: 1em;
 }
 
-/* Farbe der Header-Links auf weiß als individuelle Design-Anpassung */
-header a {
+/* Anpassung der Links im Header */
+/* Farbe auf weiß */
+header a{
     color: white;
 }
 
-/* Farbe der Footer-Links auf grau als individuelle Design-Anpassung */
+/* Anpassung der Links im Footer */
+/* Farbe auf grau */
 footer a{
     color: #a9b1ba;
 }
 
-/* Zentrierte Darstellung der Listeneinträge im Footer als individuelle Design-Anpassung */
+/* Anpassung der ungeordneten Listen in der Navigation im Footer */
+/* Zentrierung des Textes */
 footer nav ul{
     text-align: center;
 }
 
-/* Anpassung der Margin für mehr Platz zwischen den Input-Feldern */
+/* Anpassung der div-Elemente*/
+/* Margin oben in Größe der Schriftgröße */
 div{
     margin-top: 1em;
 }
 
-/* Mittige Darstellung der Registrirungsbestätigung */
+/* Anpassung des Elements mit der ID: confirmation */
+/* Zentrierung des Textes */
 #confirmation{
     text-align: center;
 }
 
-/* Reset-Button erhält dünnen roten Rahmen */
+/* Anpassung des Elements mit der ID: resetButton */
 #resetButton{
     border: solid red;
     border-width: thin;
 }
+
+/* Beginn 2. Abschnitt */
 
 /* Design kleine Bildschirme */
 @media screen and (max-width: 767px){
@@ -79,39 +90,30 @@ div{
         display: block;
     }
 
-    /* .mobile-container{
-        display: none;
-    } */
-
     .mobileNav{
         display: none;
     }
 }
 
-/* Mobil Navigationsleiste */
-/* .mobile-container {
-    max-width: 480px;
-    margin: auto;
-    height: auto;
-} */
-  
-/* .mobileNav {
-overflow: hidden;
-position: relative;
-} */
-  
+/* Beginn 3. Abschnitt */
+
+/* Anpassung des Elements mit der ID: menuLinks */
+/* Verhindern des Ausklappens bei initialen Laden */
 #menuLinks {
     display: none;
 }
 
+/* Anpassung aller Links in der Klasse mobileNav */
+/* Padding top-bottom 14px & left-right 16px, Schriftgröße 17px, Darstellung untereinander */
 .mobileNav a {
     padding: 14px 16px;
     font-size: 17px;
     display: block;
 }
 
-
-.mobileNav a.icon {
+/* //Anpassung des Elements mit der ID: menuIcon */
+/* Größe 32px, Padding top-bottom 17px & left-right 16px, absolute Positionierung */
+#menuIcon {
     font-size: 32px;
     padding: 17px 16px;
     display: block;

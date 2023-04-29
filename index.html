@@ -47,8 +47,9 @@
         </header>
         <main id="mainPart">
             <section id="registration">
-                    <form class= "form">
+                    <form id= "form">
                         <h2>Registrierung</h2>
+
                         <div>
                             <label for="field1"><b>Vorname</b></label>
                             <input id="field1" name="Vorname" type="text" placeholder="Vorname" required> 
@@ -79,47 +80,13 @@
                         </div>
 
                         <div>
-                            <label id = "plzLabel" for="field6"><b>PLZ</b></label>
-                            <input id="field6" name="PLZ" type="text" placeholder="PLZ"  minlength="5" maxlength="5" required>
+                            <label id = "plzLabel" for="field6"><b>Postleitzahl</b></label>
+                            <input id="field6" name="Postleitzahl" type="text" placeholder="Postleitzahl" required>
                         </div>
                         
                         <div>
                             <label for="field7">Ort</label>
                             <input id="field7" name="Ort" type="text" placeholder="Ort" required>
-                        </div>
-
-                        <div id="parent">
-                            <label id="errorParent"><b>Art der Kleidung</b></label> <br>
-
-                            <label for="socks">Socken</label> 
-                            <input id="socks" name="Kleidung" class="clothesType" type="checkbox" value="Socken">
-
-                            <label for="shoes">Schuhe</label> 
-                            <input id="shoes" name="Kleidung" class="clothesType" type="checkbox" value="Schuhe">
-
-                            <br class = "mobile">
-
-                            <label for="dress">Unterwäsche</label> 
-                            <input id="dress" name="Kleidung" class="clothesType" type="checkbox" value="Unterwäsche">
-
-                            <br class = "desktop">
-
-                            <label for="pants">Hosen</label> 
-                            <input id="pants" name="Kleidung" class="clothesType" type="checkbox" value="Hosen"> 
-
-                            <br class = "mobile">
-
-                            <label for="hoodie">Pullover</label> 
-                            <input id="hoodie" name="Kleidung" class="clothesType" type="checkbox" value="Pullover">
-
-                            <label for="coat">Jacken</label>
-                            <input id="coat" name="Kleidung" class="clothesType" type="checkbox" value="Jacken">
-
-                            <br class = "desktop">
-                            <br class = "mobile">
-
-                            <label for="other">Anderes</label>
-                            <input id="other" name="Kleidung" class="clothesType" type="checkbox">
                         </div>
 
                         <div>
@@ -138,6 +105,41 @@
                                 <option value="Somalia">Somalia</option>
                             </select> 
                         </div>
+
+                        <div id="parent">
+                            <label id="errorParent"><b>Art der Kleidung</b></label> <br>
+
+                            <input id="socks" name="Kleidung" class="clothesType" type="checkbox" value="Socken">
+                            <label for="socks">Socken</label> 
+
+                            <input id="shoes" name="Kleidung" class="clothesType" type="checkbox" value="Schuhe">
+                            <label for="shoes">Schuhe</label> 
+
+                            <br class = "mobile">
+
+                            <input id="dress" name="Kleidung" class="clothesType" type="checkbox" value="Unterwäsche">
+                            <label for="dress">Unterwäsche</label> 
+
+                            <br class = "desktop">
+ 
+                            <input id="pants" name="Kleidung" class="clothesType" type="checkbox" value="Hosen">
+                            <label for="pants">Hosen</label> 
+
+                            <br class = "mobile">
+ 
+                            <input id="hoodie" name="Kleidung" class="clothesType" type="checkbox" value="Pullover">
+                            <label for="hoodie">Pullover</label>
+
+                            <input id="coat" name="Kleidung" class="clothesType" type="checkbox" value="Jacken">
+                            <label for="coat">Jacken</label>
+
+                            <br class = "desktop">
+                            <br class = "mobile">
+
+                            <input id="other" name="Kleidung" class="clothesType" type="checkbox">
+                            <label for="other">Anderes</label>
+                        </div>
+
                         <br>
                         <button id="submitButton" type="submit">Registrierung abschließen</button>
                         <button id="resetButton" type="reset">Zurücksetzen</button>

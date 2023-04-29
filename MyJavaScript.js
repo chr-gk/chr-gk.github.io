@@ -1,28 +1,39 @@
+//Selektor-Funktion
+let $ = function(id){
+    return document.getElementById(id);
+}
 
-// Mobil-Menü-Event
-document.getElementById("menuIcon").addEventListener('click', showMobileMenu)
+// 1. Abschnitt - Initialisieren der Events
 
-// Übergabeart-Event
-document.getElementById("field4").addEventListener('change', checkType);
+// Mobil-Menü-Event[1]
+$("menuIcon").addEventListener('click', showMobileMenu)
 
-// PLZ-Pürfung-Event
-document.getElementById("field6").addEventListener('change', checkPLZ);
+// Übergabeart-Event[2]
+$("field4").addEventListener('change', checkType);
 
-// Andere Kleidungsart-Event
-document.getElementById("other").addEventListener('click', showNewInput);
+// PLZ-Prüfung-Event[3]
+$("field6").addEventListener('change', checkPLZ);
 
-// Formularabgabe-Event
-let formEl = document.querySelector('.form');
-formEl.addEventListener("submit", handleSubmit);
+// Andere-Kleidungsart-Event[4]
+$("other").addEventListener('click', showNewInput);
 
-//Kleidungsart-Prüfung-Event
+// Formularabgabe-Event[5]
+let form = $('form');
+form.addEventListener("submit", executeSubmit);
+
+//Kleidungsart-Prüfung-Event[6]
 let checkboxes = document.getElementsByClassName("clothesType")
 for(let i = 0; i < checkboxes.length; i++){
     checkboxes[i].addEventListener('click', checkClothesType);
 }
 
+// 2. Abschnitt - Event-Funktionen
+
+// Mobil-Menü-Funktion[1]
 function showMobileMenu() {
-    var menuLinks = document.getElementById("menuLinks");
+    let menuLinks = $("menuLinks");
+
+    // Sichtbarkeit des mobile Menus, an- bzw. abschalten
     if (menuLinks.style.display === "block") {
         menuLinks.style.display = "none";
     }else {
@@ -30,12 +41,12 @@ function showMobileMenu() {
     }
 }
 
-// Übergabeart-Funktion
+// Übergabeart-Funktion[2]
 function checkType(){
-    let type = document.getElementById("field4");
-    let street = document.getElementById("field5");
-    let plz = document.getElementById("field6");
-    let city = document.getElementById("field7");
+    let type = $("field4");
+    let street = $("field5");
+    let plz = $("field6");
+    let city = $("field7");
     
     if(type.value === "Geschäftsstelle Frankfurt"){
         // Setzen der Adresse der Geschäfsstelle
@@ -68,47 +79,49 @@ function checkType(){
     }
 }
 
-// PLZ-Funktion
+// PLZ-Prüfung-Funktion[3]
 function checkPLZ(){
-    let errorParent = document.getElementById("plzLabel");
-    let plzValue = document.getElementById("field6").value;
+    let errorParent = $("plzLabel");
+    let plzValue = $("field6").value;
     let correctInput = false;
+
+    // Erstellen der Fehlermeldung
     let p = document.createElement("p");
     let text = document.createTextNode("Leider bieten wir keine Abholung für diesen Ort an.");
-
     p.appendChild(text);
     p.setAttribute("id", "errorMessagePLZ");
     p.style.color = "red";
     p.style.marginBlockStart = 0;
     p.style.marginBlockEnd = 0;
 
+    // Prüfen ob PLZ fünfstellig und mit 60 beginnt
     if(plzValue.length !== 5 || !plzValue.startsWith('60')){
-        document.getElementById("field6").style.border = "medium solid red";
+        $("field6").style.border = "medium solid red";
         correctInput = false;
     }else{
-        document.getElementById("field6").style.border = "medium solid green";
+        $("field6").style.border = "medium solid green";
         correctInput = true;
     }
 
-    //Überprüft, ob die Fehlernachricht bereits angezeigt wird
+    //Prüfen, ob die Fehlernachricht bereits angezeigt wird
     if(!correctInput){
-        if(!errorParent.contains(document.getElementById("errorMessagePLZ"))){
+        if(!errorParent.contains($("errorMessagePLZ"))){
             errorParent.appendChild(p);
         }
     }else {
-        if(errorParent.contains(document.getElementById("errorMessagePLZ"))){
-            errorParent.removeChild(document.getElementById("errorMessagePLZ"));
+        if(errorParent.contains($("errorMessagePLZ"))){
+            errorParent.removeChild($("errorMessagePLZ"));
         }
     }
 
     return correctInput;
 }
 
-// Andere Kleidungsart-Funktion
+// Andere-Kleidungsart-Funktion[4]
 function showNewInput(){
     let input = document.createElement("input");
-    let parent = document.getElementById("parent");
-    let other = document.getElementById("other").checked;
+    let parent = $("parent");
+    let other = $("other").checked;
 
     // Definieren eines neuen Text-Inputs für diverse Kleidungsstücke
     input.setAttribute('type', 'text');
@@ -122,19 +135,20 @@ function showNewInput(){
     if(other === true){
         parent.appendChild(input);
     }else if(other === false){
-        parent.removeChild(document.getElementById("AdditionalClothes"));
+        parent.removeChild($("AdditionalClothes"));
     }
 }
 
-// Formularabgabe-Funktion
-function handleSubmit(event){
-    event.preventDefault();
+// Formularabgabe-Funktion[5]
+function executeSubmit(){
+    // event.preventDefault();
+
+    // Erneutes check-Funktionen
     if(checkClothesType() && checkPLZ()){
         
-        //Inputs erneut überprüfen?
-        
-        let arr = AttributesToArray();
-        let fdata = new FormData(formEl);
+        // Formulardaten wandeln, an API senden und bei Erfolg Bestätigung erstellen
+        let arr = mergeAttributesToArray();
+        let fdata = new FormData(form);
         fdata.append("Datum der Registrierung", new Date().toLocaleString('en-GB', {hour12: false}));
         fdata.set("Kleidung", arr);
         let data = Object.fromEntries(fdata);
@@ -154,10 +168,12 @@ function handleSubmit(event){
 
 
 // https://www.tutorials.de/threads/pruefen-ob-mind-1-checkbox-gecheckt-ist.389018/
+// Checkoxen wie Pflichtfeld behandeln
 function checkClothesType(){
     checkboxes = document.getElementsByClassName("clothesType");
     let checked = false;
 
+    // Checkboxen prüfen
     for(let i=0; i<checkboxes.length; i++){
         if(checkboxes[i].checked){
             checked = true;
@@ -165,8 +181,9 @@ function checkClothesType(){
         }
     }
 
+    //Falls keine angehakt, Hinzufügen der Fehlernachricht, falls noch nicht vorhanden
     if(!checked){
-        let errorParent = document.getElementById("errorParent");
+        let errorParent = $("errorParent");
         let p = document.createElement("p");
         let text = document.createTextNode("Bitte Art der Kleidung angeben");
 
@@ -176,24 +193,26 @@ function checkClothesType(){
         p.style.marginBlockStart = 0;
         p.style.marginBlockEnd = 0;
 
-        if(!errorParent.contains(document.getElementById("errorMessage"))){
+        if(!errorParent.contains($("errorMessage"))){
             errorParent.appendChild(p);
         }
     }else {
-        if(errorParent.contains(document.getElementById("errorMessage"))){
-            errorParent.removeChild(document.getElementById("errorMessage"));
+        if(errorParent.contains($("errorMessage"))){
+            errorParent.removeChild($("errorMessage"));
         }
     }
     return checked;
 }
 
+// 3. Abschnitt - Weitere Funktionen
+
+// Erstellen der Registrierungsbestätigung
 function showConfirmation(jsonData){
     let object = JSON.parse(jsonData);
-    // console.log(object);
 
     // Entfernen der Registrierung
-    let parent = document.getElementById("mainPart");
-    let registration = document.getElementById("registration");
+    let parent = $("mainPart");
+    let registration = $("registration");
     parent.removeChild(registration);
 
     // Erstellen der neuen section
@@ -228,20 +247,22 @@ function showConfirmation(jsonData){
         let text = document.createTextNode(attribute + ": " + object[attribute]);
         p.appendChild(text);
         section.appendChild(p);
-        // console.log(attribute + ": " + object[attribute]);
     }
 }
 
 //Kleidungsarten-Checkboxen zu einem Array bündeln
-function AttributesToArray(){
+function mergeAttributesToArray
+(){
     let arr = [];
-    let additionalClothes = document.getElementById("AdditionalClothes")
+    let additionalClothes = $("AdditionalClothes")
     let checkboxes = document.getElementsByClassName("clothesType");
 
+    // Textbox für variablen Input wird als Wert genommen, falls verwendet
     if(document.body.contains(additionalClothes)){
-        document.getElementById("other").value = additionalClothes.value;
+        $("other").value = additionalClothes.value;
     }
     
+    // alle ausgewählten Checkboxen werden dem Array hinzugefügt
     for(let i = 0; i < checkboxes.length; i++){
         if(checkboxes[i].checked){
             arr.push(checkboxes[i].value);
