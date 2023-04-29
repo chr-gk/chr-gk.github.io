@@ -140,8 +140,8 @@ function showNewInput(){
 }
 
 // Formularabgabe-Funktion[5]
-function executeSubmit(){
-    // event.preventDefault();
+function executeSubmit(event){
+    event.preventDefault();
 
     // Erneutes check-Funktionen
     if(checkClothesType() && checkPLZ()){
@@ -166,8 +166,6 @@ function executeSubmit(){
     }
 }
 
-
-// https://www.tutorials.de/threads/pruefen-ob-mind-1-checkbox-gecheckt-ist.389018/
 // Checkoxen wie Pflichtfeld behandeln
 function checkClothesType(){
     checkboxes = document.getElementsByClassName("clothesType");
@@ -251,9 +249,8 @@ function showConfirmation(jsonData){
 }
 
 //Kleidungsarten-Checkboxen zu einem Array bündeln
-function mergeAttributesToArray
-(){
-    let arr = [];
+function mergeAttributesToArray(){
+    let array = [];
     let additionalClothes = $("AdditionalClothes")
     let checkboxes = document.getElementsByClassName("clothesType");
 
@@ -265,8 +262,8 @@ function mergeAttributesToArray
     // alle ausgewählten Checkboxen werden dem Array hinzugefügt
     for(let i = 0; i < checkboxes.length; i++){
         if(checkboxes[i].checked){
-            arr.push(checkboxes[i].value);
+            array.push(checkboxes[i].value);
         }
     }
-    return arr
+    return array
 }
