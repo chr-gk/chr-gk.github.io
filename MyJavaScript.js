@@ -162,7 +162,7 @@ function executeSubmit(event){
         }).then(res => res.json())
         .then(result => console.log(result))
         .then(showConfirmation(jsonData))
-        .catch(err => console.log(err))
+        .catch(err => alert(err))
     }
 }
 
