@@ -244,7 +244,10 @@ function showConfirmation(jsonData){
         let p = document.createElement("p");
         let text = document.createTextNode(attribute + ": " + object[attribute]);
         p.appendChild(text);
-        section.appendChild(p);
+
+        if(attribute !== "Dateschutz"){
+            section.appendChild(p);
+        }
     }
 }
 
