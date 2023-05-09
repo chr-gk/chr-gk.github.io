@@ -63,6 +63,10 @@ function checkType(){
         
         city.readOnly = true;
         city.style.border = "medium solid aqua"
+
+        if($("plzLabel").contains($("errorMessagePLZ"))){
+            $("plzLabel").removeChild($("errorMessagePLZ"))
+        }
     }else{
         // Adresseingabe für Abholung ermöglichen
         street.value = "";
